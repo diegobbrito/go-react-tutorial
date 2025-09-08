@@ -46,6 +46,7 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/api/todos", getTodos)
+	app.Post("/api/todos", createTodos)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -71,4 +72,17 @@ func getTodos(c *fiber.Ctx) error {
 		todos = append(todos, todo)
 	}
 	return c.JSON(todos)
+}
+
+func createTodos(c *fiber.Ctx) error {
+	todo := new(Todo)
+	if err := c.BodyParser(todo); err != nil {
+		return c.Status(400).SendString(err.Error())
+	}
+	result, err := collection.InsertOne(context.Background(), todo)
+	if err != nil {
+		return c.Status(500).SendString(err.Error())
+	}
+	todo.ID = result.InsertedID.(primitive.ObjectID)
+	return c.Status(201).JSON(todo)
 }
