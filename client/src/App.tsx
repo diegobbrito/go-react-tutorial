@@ -1,11 +1,16 @@
 import './App.css'
-import { Button } from '@chakra-ui/react'
+import { Button, Stack } from '@chakra-ui/react'
 
 function App() {
   return (
-    <>
-      <Button>Hello</Button>
-    </>
+    <Stack h="100vh">
+      <Navbar />
+      <Container>
+        <TodoForm/>
+
+        <TodoList/>
+      </Container>
+    </Stack>
   )
 }
 
