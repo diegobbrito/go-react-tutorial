@@ -1,5 +1,7 @@
 import './App.css'
-import { Button, Stack } from '@chakra-ui/react'
+import { Button, Container, Stack } from '@chakra-ui/react'
+import Navbar from './components/Navbar'
+import TodoForm from './components/TodoForm'
 
 function App() {
   return (
@@ -7,8 +9,6 @@ function App() {
       <Navbar />
       <Container>
         <TodoForm/>
-
-        <TodoList/>
       </Container>
     </Stack>
   )
