@@ -15,6 +15,9 @@ services:
     container_name: go_app
     environment:
       MONGODB_URI: mongodb://root:password@mongodb:27017
+      PORT: 8080
+      MONGODB_DATABASE: mongodb
+      MONGODB_COLLECTION: todos
     depends_on:
       - mongodb
     ports:
