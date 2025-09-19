@@ -24,12 +24,11 @@ var collection *mongo.Collection
 
 func main() {
 
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
+	_ = godotenv.Load(".env")
 
 	MONGODB_URI := os.Getenv("MONGODB_URI")
+	MONGODB_DATABASE := os.Getenv("MONGODB_DATABASE")
+	MONGODB_COLLECTION := os.Getenv("MONGODB_COLLECTION")
 	clientOptions := options.Client().ApplyURI(MONGODB_URI)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
@@ -42,6 +41,8 @@ func main() {
 	}
 
 	fmt.Println("Connected to MONGODB ATLAS")
+
+	collection = client.Database(MONGODB_DATABASE).Collection(MONGODB_COLLECTION)
 
 	app := fiber.New()
 
