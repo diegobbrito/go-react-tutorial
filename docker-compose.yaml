@@ -24,5 +24,16 @@ services:
       - "8080:8080"
     restart: unless-stopped
 
+  frontend:
+    build: ./client
+    container_name: react_app
+    environment:
+      VITE_BASE_URL: "http://go_app:8080/api"
+    ports:
+      - "3000:80"
+    depends_on:
+      - app
+    restart: unless-stopped
+
 volumes:
   mongodb_data:
