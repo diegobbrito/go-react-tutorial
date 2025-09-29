@@ -25,7 +25,12 @@ var collection *mongo.Collection
 
 func main() {
 
-	_ = godotenv.Load(".env")
+	if os.Getenv("ENV") != "production" {
+		err := godotenv.Load(".env")
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
+	}
 
 	MONGODB_URI := os.Getenv("MONGODB_URI")
 	MONGODB_DATABASE := os.Getenv("MONGODB_DATABASE")
