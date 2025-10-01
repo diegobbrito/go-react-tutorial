@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -45,8 +44,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("Connected to MONGODB ATLAS")
 
 	collection = client.Database(MONGODB_DATABASE).Collection(MONGODB_COLLECTION)
 
