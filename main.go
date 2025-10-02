@@ -34,11 +34,13 @@ func main() {
 	MONGODB_URI := os.Getenv("MONGODB_URI")
 	MONGODB_DATABASE := os.Getenv("MONGODB_DATABASE")
 	MONGODB_COLLECTION := os.Getenv("MONGODB_COLLECTION")
+
 	clientOptions := options.Client().ApplyURI(MONGODB_URI)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer client.Disconnect(context.Background())
 	err = client.Ping(context.Background(), nil)
 	if err != nil {
@@ -61,7 +63,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "5000"
+		port = "8080"
 	}
 
 	if os.Getenv("ENV") == "production" {
