@@ -62,6 +62,7 @@ func main() {
 	app.Delete("/api/todos/:id", deleteTodo)
 
 	port := os.Getenv("PORT")
+	host := os.Getenv("HOST")
 	if port == "" {
 		port = "8080"
 	}
@@ -70,7 +71,7 @@ func main() {
 		app.Static("/", "./client/dist")
 	}
 
-	log.Fatal(app.Listen("0.0.0.0:" + port))
+	log.Fatal(app.Listen(host + port))
 
 }
 
