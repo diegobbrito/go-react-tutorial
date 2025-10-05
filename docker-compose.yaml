@@ -16,6 +16,7 @@ services:
     environment:
       MONGODB_URI: mongodb://root:password@mongodb:27017
       PORT: 8080
+      HOST: "0.0.0.0:"
       MONGODB_DATABASE: mongodb
       MONGODB_COLLECTION: todos
     depends_on:
