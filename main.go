@@ -67,6 +67,10 @@ func main() {
 		port = "8080"
 	}
 
+	if host == "" {
+		host = "0.0.0.0:"
+	}
+
 	if os.Getenv("ENV") == "production" {
 		app.Static("/", "./client/dist")
 	}
